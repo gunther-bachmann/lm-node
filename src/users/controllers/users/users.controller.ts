@@ -16,10 +16,8 @@ export class UsersController {
 
   @Post()
   createUser(@Body() createUserDto: CreateUserDto) {
-    const { username, password } = createUserDto;
-
-    const newUser = this.usersService.createUsers({ username, password });
-    return { ...newUser, password: '******' };
+    const newUser = this.usersService.createUsers(createUserDto);
+    return newUser;
   }
 
   @Put(':id')

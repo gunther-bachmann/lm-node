@@ -10,7 +10,7 @@ export class UsersService {
   ) {}
 
   findUsers() {
-    return this.userRepository.find({ relations: ['profile', 'posts'] });
+    return this.userRepository.find();
   }
 
   createUsers(userDetails: CreateUserParams) {

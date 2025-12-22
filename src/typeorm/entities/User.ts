@@ -5,9 +5,13 @@ export class User {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: number;
 
-  @Column({ unique: true })
-  username: string;
+  @Column()
+  firstName: string;
 
   @Column()
-  password: string;
+  lastName: string;
+
+
+  @Column()
+  age: number;
 }

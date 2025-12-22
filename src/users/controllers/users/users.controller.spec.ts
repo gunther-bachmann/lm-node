@@ -1,12 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersController } from './users.controller';
 import { UsersService } from '../../services/users/users.service';
+import { User } from '@/typeorm/entities/User';
 
 describe('UsersController', () => {
   let controller: UsersController;
 
+  const davidBowieEntry: User = { id: 1, firstName: 'david', lastName: 'bowie', age: 78 }
   const mockRepo = {
-    findOneBy: jest.fn().mockResolvedValue({ id: 1, name: 'david' }),
+    findOneBy: jest.fn().mockResolvedValue(davidBowieEntry),
   };
 
   beforeEach(async () => {
@@ -21,10 +23,7 @@ describe('UsersController', () => {
     controller = module.get<UsersController>(UsersController);
   });
 
-  it('should be defined', async () => {
-    expect(await controller.getUserById(1)).toStrictEqual({
-      id: 1,
-      name: 'david',
-    });
+  it('returns the user the repo finds', async () => {
+    expect(await controller.getUserById(1)).toStrictEqual(davidBowieEntry);
   });
 });

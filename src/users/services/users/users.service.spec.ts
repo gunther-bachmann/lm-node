@@ -1,11 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from './users.service';
+import { User } from '@/typeorm/entities/User';
 
 describe('UsersService', () => {
   let service: UsersService;
+  const davidBowieEntry: User = { id: 1, firstName: 'david', lastName: 'bowie', age: 78 };
 
   const mockRepo = {
-    findOneBy: jest.fn().mockResolvedValue({ id: 1, username: 'david' }),
+    findOneBy: jest.fn().mockResolvedValue(davidBowieEntry),
   };
 
   beforeEach(async () => {
@@ -19,10 +21,7 @@ describe('UsersService', () => {
     service = module.get<UsersService>(UsersService);
   });
 
-  it('should be defined', async () => {
-    expect(await service.getUser(1)).toStrictEqual({
-      id: 1,
-      username: 'david',
-    });
+  it('gets the user the repository returns for this id', async () => {
+    expect(await service.getUser(1)).toStrictEqual(davidBowieEntry);
   });
 });
