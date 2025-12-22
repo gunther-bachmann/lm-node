@@ -1,10 +1,10 @@
 {
-  "name": "nestjs-typeorm-mysql",
+  "name": "lims-node",
   "version": "0.0.1",
   "description": "",
   "author": "",
-  "private": true,
-  "license": "UNLICENSED",
+  "private": false,
+  "license": "MIT License",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\"",
