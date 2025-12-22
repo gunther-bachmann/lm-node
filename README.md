@@ -2,6 +2,7 @@
 
 ## Description
 
+TODO
 
 ## Project setup
 
@@ -56,31 +57,45 @@ mysql -h localhost -p
 ```
 
 create db and table:
-```bash
+```sql
 create database test;
-use test;
-create table user (id INT AUTO_INCREMENT PRIMARY KEY, firstName VARCHAR(50), lastName VARCHAR(50), age INT);
+```
+
+after the application was started, the user table is automatically created.
+add an example entry:
+```sql
+insert into users (id, firstName, lastName, age) values (1, 'david', 'bowie', 78);
+```
+
+now executing a curl on the web-service should yield one user:
+```bash
+curl http://localhost:3000/users
+
+# produces: [{"id":"1","firstName":"david","lastName":"bowie","age":78}]
 ```
 
 ## Resources
 
+Nestjs:
+  Unit Testing: https://docs.nestjs.com/fundamentals/testing
+  DB Integration: https://docs.nestjs.com/techniques/database
+  Recipes: https://docs.nestjs.com/recipes/
+  
+Jest Unit Testing
+  getting started https://jestjs.io/docs/getting-started#using-typescript
+  
+TypeORM 
+  getting started https://typeorm.io/docs/getting-started
+  mysql https://typeorm.io/docs/drivers/mysql/
+  
+Nodejs
+  websockets: https://nodejs.org/en/learn/getting-started/websocket
+  filesystem api: https://nodejs.org/docs/latest-v22.x/api/fs.html
 
-Nestjs Unit Testing:
-  https://docs.nestjs.com/fundamentals/testing
-
-MySQL with typeorm:
-  https://typeorm.io/docs/drivers/mysql/
-
-Check out a few resources that may come in handy when working with NestJS:
-
+Additional resources for Nestjs:
 - Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
 - To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
 - Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
 
 ## Support
 
