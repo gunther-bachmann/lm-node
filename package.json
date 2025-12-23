@@ -1,10 +1,13 @@
 {
-  "name": "lims-node",
+  "name": "lm-node",
   "version": "0.0.1",
   "description": "",
   "author": "",
   "private": false,
   "license": "MIT License",
+  "engines" : {
+    "node" : ">=24.0.0"
+  },
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\"",
@@ -39,7 +42,7 @@
     "@nestjs/testing": "^11.0.1",
     "@types/express": "^5.0.0",
     "@types/jest": "^30.0.0",
-    "@types/node": "^22.10.7",
+    "@types/node": "^24.0.0",
     "@types/supertest": "^6.0.3",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.0.1",

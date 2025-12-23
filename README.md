@@ -1,4 +1,4 @@
-# LIMS
+# LM-NODE
 
 ## Description
 
@@ -74,6 +74,42 @@ curl http://localhost:3000/users
 # produces: [{"id":"1","firstName":"david","lastName":"bowie","age":78}]
 ```
 
+## Examples
+### adding a foreign key many-to-many relation to user
+  The will add a new entity 'group' which user has a many-to-many relation.
+  
+  - `nest g module groups`
+  - create `src/typeorm/entities/Group.ts`
+    ```typescript
+      import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+      
+      @Entity({ name: 'groups' })
+      export class Group {
+        @PrimaryGeneratedColumn({ type: 'bigint' })
+        id: number;
+      
+        @Column()
+        name: string;
+      }
+    ```
+  - adjust `src/typeorm/entities/User.ts` to reference Group
+    ```typescript
+      @ManyToMany(() => Group)
+      @JoinTable()
+      groups: Group[];
+    ```
+  - `nest g service groups`
+    and add the db access methods
+    fixup the test to use a mocked 'GROUP_REPOSITORY'
+  - `nest g controller groups`
+    and add the rest methods
+    fixup the test to use a mocked 'GROUP_REPOSITORY'
+  - add `src/groups/groups.provider.ts`
+    add a provider for 'GROUP_REPOSITORY'
+  - make sure to add 'Group' as entity in the `src/app.module.ts`
+  
+  To get an overview of all changes involved, take a look at commit
+  ce7efc5ad5da5ac96f718dbd10bbffe23a826854 : add groups and user to groups relation
 ## Resources
 
 Nestjs:
