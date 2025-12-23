@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from './users.service';
 import { User } from '@/typeorm/entities/User';
+import { DataSource } from 'typeorm';
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -16,11 +17,16 @@ describe('UsersService', () => {
     findOneBy: jest.fn().mockResolvedValue(davidBowieEntry),
   };
 
+  const mockDataSource: Partial<DataSource> = {
+    transaction: jest.fn(),
+  };
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         UsersService,
         { provide: 'USER_REPOSITORY', useValue: mockRepo },
+        { provide: DataSource, useValue: mockDataSource },
       ],
     }).compile();
 

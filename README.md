@@ -74,6 +74,12 @@ curl http://localhost:3000/users
 # produces: [{"id":"1","firstName":"david","lastName":"bowie","age":78}]
 ```
 
+## Code Organisation
+  - source and test together in src/
+  - tests end on spec.ts, e2e tests on e2e-spec.ts
+  - rest endpoints in *.controller.*
+  - domain functions in *.service.*
+  - db entities in typeorm/entities
 ## Examples
 ### adding a foreign key many-to-many relation to user
   The will add a new entity 'group' which user has a many-to-many relation.

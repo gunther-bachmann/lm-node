@@ -2,9 +2,14 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersController } from './users.controller';
 import { UsersService } from '@/users/users.service';
 import { User } from '@/typeorm/entities/User';
+import { DataSource } from 'typeorm';
 
 describe('UsersController', () => {
   let controller: UsersController;
+
+  const mockDataSource: Partial<DataSource> = {
+    transaction: jest.fn(),
+  };
 
   const davidBowieEntry: User = {
     id: 1,
@@ -23,6 +28,7 @@ describe('UsersController', () => {
       providers: [
         UsersService,
         { provide: 'USER_REPOSITORY', useValue: mockRepo },
+        { provide: DataSource, useValue: mockDataSource },
       ],
     }).compile();
 

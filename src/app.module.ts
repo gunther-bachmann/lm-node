@@ -6,8 +6,6 @@ import { User } from './typeorm/entities/User';
 import { Group } from './typeorm/entities/Group';
 import { UsersModule } from './users/users.module';
 import { GroupsModule } from './groups/groups.module';
-import { GroupsProvider } from './groups/groups.provider';
-import { usersProvider } from './users/users.provider';
 
 @Module({
   imports: [
