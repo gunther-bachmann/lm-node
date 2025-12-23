@@ -2,7 +2,7 @@ import { Controller, ParseIntPipe } from '@nestjs/common';
 import { Body, Delete, Get, Param, Post, Put } from '@nestjs/common/decorators';
 import { CreateUserDto } from '@/users/dtos/CreateUser.dto';
 import { UpdateUserDto } from '@/users/dtos/UpdateUser.dto';
-import { UsersService } from '@/users/services/users/users.service';
+import { UsersService } from '@/users/users.service';
 
 @Controller('users')
 export class UsersController {

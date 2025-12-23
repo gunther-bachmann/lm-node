@@ -18,7 +18,7 @@ import { usersProvider } from './users/users.provider';
       username: 'root',
       password: 'root',
       database: 'test',
-      entities: [User,Group],
+      entities: [User, Group],
       synchronize: true,
     }),
     UsersModule,

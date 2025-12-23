@@ -2,7 +2,6 @@ import { Injectable, Inject } from '@nestjs/common';
 import { Group } from '@/typeorm/entities/Group';
 import { Repository, DeleteResult } from 'typeorm';
 
-
 @Injectable()
 export class GroupsService {
   constructor(

@@ -4,7 +4,13 @@ import { User } from '@/typeorm/entities/User';
 
 describe('UsersService', () => {
   let service: UsersService;
-  const davidBowieEntry: User = { id: 1, firstName: 'david', lastName: 'bowie', age: 78, groups: [] };
+  const davidBowieEntry: User = {
+    id: 1,
+    firstName: 'david',
+    lastName: 'bowie',
+    age: 78,
+    groups: [],
+  };
 
   const mockRepo = {
     findOneBy: jest.fn().mockResolvedValue(davidBowieEntry),

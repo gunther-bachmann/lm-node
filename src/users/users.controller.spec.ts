@@ -1,12 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersController } from './users.controller';
-import { UsersService } from '@/users/services/users/users.service';
+import { UsersService } from '@/users/users.service';
 import { User } from '@/typeorm/entities/User';
 
 describe('UsersController', () => {
   let controller: UsersController;
 
-  const davidBowieEntry: User = { id: 1, firstName: 'david', lastName: 'bowie', age: 78, groups: [] }
+  const davidBowieEntry: User = {
+    id: 1,
+    firstName: 'david',
+    lastName: 'bowie',
+    age: 78,
+    groups: [],
+  };
   const mockRepo = {
     findOneBy: jest.fn().mockResolvedValue(davidBowieEntry),
   };
