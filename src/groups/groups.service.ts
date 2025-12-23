@@ -8,15 +8,15 @@ export class GroupsService {
     @Inject('GROUP_REPOSITORY') private groupRepository: Repository<Group>,
   ) {}
 
-  findGroups(): Promise<Group[]> {
+  async findGroups(): Promise<Group[]> {
     return this.groupRepository.find();
   }
 
-  getGroup(id: number): Promise<Group | null> {
+  async getGroup(id: number): Promise<Group | null> {
     return this.groupRepository.findOneBy({ id });
   }
 
-  deleteUser(id: number): Promise<DeleteResult> {
+  async deleteUser(id: number): Promise<DeleteResult> {
     return this.groupRepository.delete({ id });
   }
 }

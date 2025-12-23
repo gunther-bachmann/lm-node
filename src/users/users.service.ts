@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { User } from '@/typeorm/entities/User';
 import { CreateUserParams, UpdateUserParams } from 'src/utils/types';
-import { Repository, DataSource } from 'typeorm';
+import { Repository, DataSource, UpdateResult, DeleteResult } from 'typeorm';
 import { InjectDataSource } from '@nestjs/typeorm';
 
 @Injectable()
@@ -11,17 +11,17 @@ export class UsersService {
     @Inject('USER_REPOSITORY') private userRepository: Repository<User>,
   ) {}
 
-  findUsers() {
+  async findUsers(): Promise<User[]> {
     return this.userRepository.find({ relations: { groups: true } });
   }
 
-  createUsers(userDetails: CreateUserParams) {
+  async createUsers(userDetails: CreateUserParams): Promise<User> {
     const newUser = this.userRepository.create(userDetails);
 
     return this.userRepository.save(newUser);
   }
 
-  createMultipleUsersTX(users: CreateUserParams[]) {
+  async createMultipleUsersTX(users: CreateUserParams[]): Promise<void> {
     this.dataSource.transaction('SERIALIZABLE', async (manager) => {
       await Promise.all(
         users.map((user) => {
@@ -32,18 +32,18 @@ export class UsersService {
     });
   }
 
-  updateUser(updateUserDetails: UpdateUserParams) {
+  async updateUser(updateUserDetails: UpdateUserParams): Promise<UpdateResult> {
     return this.userRepository.update(
       { id: updateUserDetails.id },
       { ...updateUserDetails },
     );
   }
 
-  getUser(id: number) {
+  async getUser(id: number): Promise<User | null> {
     return this.userRepository.findOneBy({ id });
   }
 
-  deleteUser(id: number) {
+  deleteUser(id: number): Promise<DeleteResult> {
     return this.userRepository.delete({ id });
   }
 }

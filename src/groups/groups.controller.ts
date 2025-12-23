@@ -7,12 +7,12 @@ export class GroupsController {
   constructor(private readonly groupsService: GroupsService) {}
 
   @Get()
-  findAll(): Promise<Group[]> {
+  async findAll(): Promise<Group[]> {
     return this.groupsService.findGroups();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number): Promise<Group | null> {
+  async findOne(@Param('id') id: number): Promise<Group | null> {
     return this.groupsService.getGroup(id);
   }
 }
