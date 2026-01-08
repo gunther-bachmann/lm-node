@@ -6,6 +6,7 @@ export default async () => {
   const container : StartedMySqlContainer = globalThis.test_container as StartedMySqlContainer
   const dataSource : DataSource = globalThis.test_datasource as DataSource;
 
+  console.log(`Tear down test container with connection uri ${container.getConnectionUri()}`)
   // Gracefully close connections
   if (dataSource && dataSource.isInitialized) {
     await dataSource.destroy();

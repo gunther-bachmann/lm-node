@@ -8,4 +8,5 @@ export default async () => {
 
   process.env.DB_URL = container.getConnectionUri();
   globalThis.test_container = container;
+  console.log(`Setup mySql container with connection Uri ${container.getConnectionUri()}`)
 };

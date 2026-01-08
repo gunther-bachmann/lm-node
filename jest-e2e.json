@@ -9,5 +9,7 @@
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
-  "globalSetup" : "<rootDir>/setup/global-setup.ts"
+  "globalSetup" : "<rootDir>/setup/global-setup.ts",
+  "globalTeardown" : "<rootDir>/setup/global-teardown.ts"
+
 }
